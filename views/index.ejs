@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <form action="/add" method="post">
+    <input type="text" name="todo" required>
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    <% for (let i = 0; i < todoList.length; i++) { %>
+      <li><%= todoList[i] %> 
+        <form action="/delete" method="post" style="display: inline-block">
+          <input type="hidden" name="index" value="<%= i %>">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% } %>
+  </ul>
+  <% if (todoList.length > 0) { %>
+    <form action="/delete/all" method="post">
+      <button type="submit">Delete All</button>
+    </form>
+  <% } %>
+</body>
+</html>
